@@ -1,0 +1,922 @@
+/* 
+   Tema: Elegan 
+   Warna Utama: Putih (#FAF8F5), Emas (#D4AF37), Hijau Sage (#9BAE96)
+*/
+
+:root {
+    --bg-color: #b76e08;
+    /* Opsi 4: Gradasi memusat (melingkar dari tengah ke luar) */
+    --bg-gradient-radial: radial-gradient(circle, #002058, #000000);
+    --primary-color: #ffffff;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    /* Sage Green */
+    --secondary-color: #d6c100;
+    /* Gold */
+    --text-color: #ffffff;
+    --text-light: #ffffff;
+    --font-heading: 'Tangerine', cursive;
+    --font-body: 'Playfair+Display', serif;
+    /* TAMBAHAN: Variabel Warna Gradasi */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.2rem;
+    font-family: 'Playfair+Display', serif;
+    min-height: 2000px;
+}
+
+
+/* Kunci scroll sebelum cover dibuka */
+
+.no-scroll {
+    overflow: hidden;
+}
+
+
+/* Utilities */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-image: url(bg/cover01.mp4);
+}
+
+.section-title {
+    font-family: var(--font-body);
+    font-size: 5rem;
+    color: var(--secondary-color);
+    margin-bottom: 100px;
+}
+
+.section-subtitle {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 100px;
+}
+
+
+/* Buttons */
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #d6c100;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-sm {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+
+/* --- PENGATURAN SECTION COVER --- */
+
+#cover-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Memenuhi seluruh tinggi layar hp/laptop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+/* --- KONTEM VIDEO BACKGROUND --- */
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    /* Berada paling belakang */
+    overflow: hidden;
+}
+
+
+/* --- STYLING VIDEO --- */
+
+.bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Sangat penting: membuat video memenuhi area tanpa terdistorsi/gepeng */
+    object-position: center;
+    /* Fokus di tengah video */
+}
+
+
+/* =========================================
+   2. TAMPILAN DEFAULT (LAPTOP / PC)
+   Layar di atas 768px
+========================================= */
+
+.video-laptop {
+    display: block;
+    /* Tampilkan video download.mp4 */
+    object-fit: contain;
+    object-position: right bottom;
+}
+
+.video-hp {
+    display: none;
+    /* Sembunyikan video HP.mp4 */
+}
+
+
+/* =========================================
+   3. TAMPILAN KHUSUS HP (MOBILE)
+   Layar di bawah 768px
+========================================= */
+
+@media screen and (max-width: 768px) {
+    .video-laptop {
+        display: none;
+        /* Sembunyikan video laptop */
+    }
+    .video-hp {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        /* Tampilkan video HP (HP.mp4) */
+        object-fit: contain;
+        object-position: center;
+    }
+    .wedding-of {
+        font-size: 1rem;
+    }
+    .guest-info {
+        font-size: 1rem;
+    }
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 8px 18px;
+        font-size: 1rem;
+        font-family: var(--font-body);
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 500;
+    }
+}
+
+
+/* --- OVERLAY GELAP AGAR TEKS TERBACA --- */
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    /* 0.5 adalah tingkat kegelapan, bisa diubah 0.1 - 0.9 */
+    z-index: -2;
+    /* Berada di antara video dan teks */
+}
+
+
+/* --- KONTEN TEKS (Posisi di atas) --- */
+
+.cover-content {
+    position: relative;
+    z-index: 1;
+    /* Pastikan teks ada di atas overlay dan video */
+    text-align: center;
+    color: #ffffff;
+    /* Warna teks harus kontras (putih) */
+}
+
+
+/* 1. Membuat Rule Animasi */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        /* Mulai dari 30px di bawah */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Kembali ke posisi asli */
+    }
+}
+
+
+/* 2. Menerapkan Animasi ke Elemen HTML Anda */
+
+.wedding-of {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.2s;
+    /* Muncul paling pertama */
+    opacity: 0;
+    /* Agar sembunyi sebelum animasi mulai */
+}
+
+.couple-name-cover {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s;
+    /* Muncul kedua */
+    opacity: 0;
+}
+
+.guest-info {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.8s;
+    /* Muncul ketiga */
+    opacity: 0;
+}
+
+#btn-buka {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.1s;
+    /* Tombol muncul terakhir */
+    opacity: 0;
+}
+
+
+/* 1. Cover (Hero Section) */
+
+#cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(bg/F03.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.cover-content {
+    text-align: center;
+    color: white;
+}
+
+.wedding-of {
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.couple-name-cover {
+    font-family: 'Tangerine', cursive;
+    font-size: 5rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    text-shadow: var(--shadow);
+}
+
+.guest-info {
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+
+/* Inner Hero */
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text h1 {
+    font-family: 'Playfair+Display', cursive;
+}
+
+
+/* 2. Quote */
+
+#quote {
+    min-height: 100vh;
+    
+    /* 1. MENGGABUNGKAN WARNA GELAP DAN FOTO BACKGROUND */
+    /* rgba(0,0,0, 0.6) berarti warna hitam dengan tingkat transparansi 60% */
+    background-image: linear-gradient(rgba(80, 80, 80, 0.6), rgba(0, 0, 0, 0.6)), url(bg/NBAL8264.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* 2. MENGETENGAHKAN TEKS SECARA SEMPURNA */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Membuat konten berada persis di tengah atas-bawah */
+    align-items: center;     /* Membuat konten berada persis di tengah kiri-kanan */
+    
+    /* Jarak aman tepi layar */
+    padding: 20px;
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.quote-text {
+    font-family: 'Playfair+Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    z-index: 1;
+    /* Bayangan: Kanan 2px, Bawah 2px, Blur 4px, Warna Hitam 70% */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.quote-source {
+    font-weight: 100;
+    color: var(--text-light);
+    z-index: 1;
+    /* Bayangan: Kanan 2px, Bawah 2px, Blur 4px, Warna Hitam 70% */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+/* 3. Profil */
+
+
+/* --- Pengaturan Background Section Profil agar Full Layar --- */
+
+#couple,
+#event,
+#story,
+#gallery,
+#gift,
+#rsvp {
+    min-height: 100vh;
+    
+    /* MENGGUNAKAN WARNA GRADASI */
+    /* Memanggil variabel gradasi yang sudah dibuat di :root */
+    background: var(--bg-gradient-radial);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 15px;
+    /* Memberi jarak aman agar tidak menempel di tepi HP */
+}
+
+.couple-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+@media (min-width: 768px) {
+    .couple-grid {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+}
+
+.couple-card {
+    text-align: center;
+    max-width: 300px;
+}
+
+.couple-img-wrapper {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px;
+    border-radius: 50% 50% 0px 0px;
+    border: 2px solid var(--secondary-color);
+    overflow: hidden;
+}
+
+.couple-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.couple-name {
+    font-family: 'Tangerine', cursive;
+    font-size: 5rem;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.couple-parents {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}
+
+.couple-and h1 {
+    font-family: 'Tangerine', cursive;
+    font-size: 4rem;
+    color: var(--secondary-color);
+    margin-top: 0%;
+}
+
+
+/* 4. Event & Countdown */
+
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.cd-box {
+    background: rgb(238, 155, 10);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 70px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    /* subtle gold border */
+}
+
+.cd-box span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.cd-box p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.event-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .event-grid {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0px;
+    }
+}
+
+.event-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.event-icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.event-date,
+.event-time {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.event-location {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 15px 0;
+}
+
+
+/* 5. Love Story Timeline */
+
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--secondary-color);
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: rgb(111, 8, 8);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    top: 15px;
+    left: 12px;
+    z-index: 1;
+}
+
+.timeline-content {
+    padding: 15px;
+    background-color: rgb(43, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.timeline-content p {
+    font-size: 1.5rem;
+    color: var(--text-light);
+}
+
+
+/* 6. Gallery */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+}
+
+
+/* 7. RSVP & Wishes */
+
+.rsvp-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#rsvp-form input,
+#rsvp-form select,
+#rsvp-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+}
+
+#rsvp-form input:focus,
+#rsvp-form select:focus,
+#rsvp-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.wishes-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.wish-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.wish-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.wish-item h5 {
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wish-item p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.badge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+}
+
+.badge.hadir {
+    background-color: var(--primary-color);
+}
+
+.badge.tidak-hadir {
+    background-color: #ccc;
+}
+
+
+/* 8. Gift */
+
+.gift-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(155, 174, 150, 0.3);
+}
+
+.gift-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.rek-number {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.rek-name {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+
+/* 9. Footer */
+
+.footer {
+    background-color: var(--bg-color);
+    color: white;
+    padding: 50px 0;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer-couple {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+
+/* Scroll Reveal Animation */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Floating Music Button */
+
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+}
+
+/* --- SCROLL HALUS --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Media Query */
+
+
+/* laptop */
+
+@media (max-width: 992px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+
+/* tablet */
+
+@media (max-width: 768px) {
+    html {
+        font-size: 65%;
+    }
+}
+
+
+/* mobile phone */
+
+@media (max-width: 576px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+/* =========================================
+   BOTTOM NAVIGATION MENU
+========================================= */
+.bottom-nav {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px; /* Lebar maksimal agar tetap rapi di PC */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border: 1px solid var(--secondary-color);
+    
+    /* Sembunyikan di awal sebelum cover dibuka */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Class untuk memunculkan navigasi */
+.bottom-nav.show-nav {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+}
+
+.nav-item span {
+    font-size: 0.7rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+.nav-item:hover, .nav-item:active {
+    color: #b76e08; /* Menggunakan warna dari --bg-color Anda */
+    transform: translateY(-3px);
+}
+
+/* --- PENYESUAIAN TOMBOL MUSIK --- */
+/* Mengubah posisi bottom dari 30px menjadi 90px agar tidak menutupi navigasi */
+.floating-btn {
+    bottom: 90px !important; 
+}
