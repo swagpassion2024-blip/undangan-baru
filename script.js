@@ -88,3 +88,12 @@ function copyText(elementId) {
         alert("Gagal menyalin: ", err);
     });
 }
+
+// Mengambil parameter 'kepada' dari link URL
+const urlParams = new URLSearchParams(window.location.search);
+const namaTamu = urlParams.get('kepada');
+
+// Memasukkan nama ke dalam HTML jika namanya ada di link
+if (namaTamu) {
+    document.getElementById('nama-tamu').innerText = namaTamu;
+}
